@@ -1,0 +1,20 @@
+<!-- унаследовал шаблон -->
+{% extends 'default.html' %}
+{% load my_filters %}
+
+
+
+{% block title %}
+Новости
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+<p>Всего новостей: {{ posts_list|length}}</p>
+
+<h1>{% for i in posts_list %}</h1>
+<h3>{{ i.title }}</h3>
+<p><b>{{ i.in_time|date:'d.m.Y' }}</b> |  {{ i.text|truncatechars:20|censor }}</p>
+
+{% endfor %}
+{% endblock content %}
